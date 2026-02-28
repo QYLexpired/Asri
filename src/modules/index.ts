@@ -4,7 +4,7 @@ import { debounce, querySelectorAsync } from "../util/misc";
 import { AsriMutationObserver, AsriResizeObserver, MOConfigForClassNames } from "../util/observers";
 import { asriDoms, environment as env } from "../util/rsc";
 import { addAfwdMenuItems, removeProtyleSpacings } from "./afwd";
-import { asriConfigs, createBarModeMenuItems, curMode, followSysAccentColor, getI18n, getSystemAccentColor, loadThemePalette, paletteMenuItemClickEventListener, tfpMenuItemCallbackEventListener, unloadThemePalette } from "./asriConfigs";
+import { asriConfigs, createBarModeMenuItems, createMobileConfigButton, curMode, followSysAccentColor, getI18n, getSystemAccentColor, loadThemePalette, paletteMenuItemClickEventListener, tfpMenuItemCallbackEventListener, unloadThemePalette } from "./asriConfigs";
 import { updateCoverImgColor } from "./asriConfigs/coverImgColor";
 import { removeHdrSupportImage } from "./asriConfigs/util";
 import { addDockbClassName, destroyDockBg, removeDockbClassName, updateDockLBgAndBorder } from "./docks";
@@ -50,6 +50,7 @@ export async function loadAsriJSModules() {
     await updateDragRect("initials");
     createTopbarFusionElements();
   }
+  createMobileConfigButton();
   updateStyles();
   addDockbClassName();
   // avoidOverlappingWithStatus();

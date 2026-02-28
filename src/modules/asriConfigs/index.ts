@@ -17,7 +17,7 @@ export * from "./state";
 export { getSystemAccentColor } from "./systemColor";
 
 // Menu items
-export { createBarModeMenuItems, initMenuItems } from "./menuItems";
+export { createBarModeMenuItems, initMenuItems, createMobileConfigButton } from "./menuItems";
 
 // Event handlers
 export {
