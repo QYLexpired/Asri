@@ -61,7 +61,7 @@ Theme release
 
 ## Theme Features
 
-![banner](https://cdn.jsdelivr.net/gh/mustakshif/Asri-for-SiYuan@main/doc/banner_v22.png)
+<!-- ![banner](https://cdn.jsdelivr.net/gh/mustakshif/Asri-for-SiYuan@main/doc/banner_v22.png) -->
 
 ### Sleek and Modern Design
 

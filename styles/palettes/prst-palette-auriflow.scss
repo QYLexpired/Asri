@@ -30,13 +30,18 @@
   --foil-shadow-opacity: 0.4; // 阴影透明度
 
   // https://www.zhangxinxu.com/wordpress/2023/06/css-noise/
-  $texture-goldfoil: repeating-radial-gradient(rgba(180, 135, 30, var(--foil-shadow-opacity)) 0 0.0001%, #0000 0 0.0002%) 30% 50% / 2500px 2500px, repeating-conic-gradient(var(--foil-local-clr) 0 0.0001%, #0000 0 0.0002%) 60% 60% / 2500px 2500px, repeating-conic-gradient(rgba(245, 227, 199, var(--foil-highlight-opacity)) 0 0.0001%, #0000 0 0.0002%) 50% 50% / 2500px 2500px, var(--foil-base-clr);
+  $texture-goldfoil:
+    repeating-radial-gradient(rgba(180, 135, 30, var(--foil-shadow-opacity)) 0 0.0001%, #0000 0 0.0002%) 30% 50% / 2500px 2500px,
+    repeating-conic-gradient(var(--foil-local-clr) 0 0.0001%, #0000 0 0.0002%) 60% 60% / 2500px 2500px,
+    repeating-conic-gradient(rgba(245, 227, 199, var(--foil-highlight-opacity)) 0 0.0001%, #0000 0 0.0002%) 50% 50% / 2500px 2500px,
+    var(--foil-base-clr);
 
   --texture-goldfoil: #{$texture-goldfoil};
   --texture-goldfoil-blend-mode: multiply, normal, hard-light, normal;
 
   &.asri-mode-light {
-    .protyle, .b3-typography,
+    .protyle,
+    .b3-typography,
     .b3-dialog__header {
       --foil-local-clr: rgb(207 155 72); // 本色
       --foil-base-clr: rgb(196 182 33); // 底色
@@ -95,7 +100,12 @@
   }
 
   .protyle-title__input,
-  h1, h2, h3, h4, h5, h6,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
   [data-type="NodeHeading"]:not([style*="background-color"]),
   .b3-dialog__header {
     @include goldfoil-background;
@@ -107,6 +117,24 @@
     // @include darkmode-counterpart {
     //   color: rgb(from var(--b3-theme-on-background) r g b / 0.2);
     // }
+  }
+
+  .protyle-title__input,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    &::selection {
+      background-color: var(--b3-theme-primary-lighter);
+    }
+  }
+
+  [data-type="NodeHeading"]:not([style*="background-color"]) {
+    ::selection {
+      background-color: var(--b3-theme-primary-lighter);
+    }
   }
 
   [data-type="NodeHeading"]:not([style*="background-color"]) {
@@ -138,5 +166,10 @@
 
   .config-bazaar__title .b3-button--outline:hover {
     background: none;
+  }
+}
+
+:root {
+  ::selection {
   }
 }

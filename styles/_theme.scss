@@ -50,10 +50,6 @@
   @include theme-root($theme-light);
   @include theme-root-light;
 
-  [contenteditable="true"]::selection {
-    background-color: var(--b3-theme-primary-lightest);
-  }
-
   // use hex to fix https://github.com/mustakshif/Asri/issues/39
   .body-asri--mobile {
     --b3-theme-background: #fff;
@@ -78,4 +74,12 @@ body {
 
   --b3-toolbar-left-mac: 88px;
   --toolbar-height: 48px;
+}
+
+:root {
+  @supports (color: color-mix(in srgb, currentColor, #000)) {
+    ::selection {
+      background-color: color-mix(in srgb, currentColor 25%, #00000000);
+    }
+  }
 }
