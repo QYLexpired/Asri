@@ -480,15 +480,48 @@
 
 @mixin callout {
   .callout {
+    $padding-base: 0.5em;
     padding-left: unset;
     padding-inline-start: 0.5em;
     padding-inline-end: 0.5em;
     margin: 1em 0;
-    padding-top: 0.5em;
-    padding-bottom: calc(0.5em + 4px);
+    padding-top: calc(0.5em + 4px);
+    padding-bottom: 0.5em;
     color: var(--callout-text-color, var(--b3-theme-on-surface));
     background-color: var(--callout-background-color, var(--b3-theme-surface));
     box-shadow: 0 0 0 0.5px inset var(--callout-border-color, var(--b3-border-color-trans));
+
+    // #region overflow hidden support
+    overflow: hidden;
+
+    .protyle-attr {
+      top: 4px;
+      inset-inline-end: 24px;
+
+      > div {
+        color: inherit;
+      }
+
+      > .protyle-attr--refcount {
+        top: unset;
+        right: unset;
+        inset-inline-end: -20px;
+      }
+    }
+
+    &.dragover__left::after {
+      left: 0;
+    }
+    &.dragover__right::after {
+      right: 0;
+    }
+    &.dragover__top::after {
+      top: 0;
+    }
+    &.dragover__bottom::after {
+      bottom: 0;
+    }
+    // #endregion overflow hidden support
 
     &-icon {
       font-size: 120%;
@@ -496,12 +529,14 @@
 
     &-title {
       margin-left: 0;
+      font-size: 120%;
       text-transform: uppercase;
       font-feature-settings: normal;
     }
 
     &-content {
-      padding-inline-start: calc(1.2em + 8px);
+      padding-inline-start: $padding-base;
+      padding-inline-end: 0.5em;
     }
 
     &::before {
@@ -520,6 +555,35 @@
     + .bq,
     + blockquote {
       margin-top: 0;
+    }
+
+    > .callout-info {
+      > .callout-icon {
+        position: absolute;
+        inset-inline-end: 0;
+        inset-block-end: 0;
+        transform: scale(4.2) rotate(-15deg) translate(-2%, -12%);
+        opacity: 0.8;
+        transition: opacity 0.2s 0.125s;
+        filter: grayscale(1) contrast(0.7) brightness(0.8);
+        mix-blend-mode: color-burn;
+        // pointer-events: none;
+
+        @include darkmode-counterpart {
+          mix-blend-mode: color-dodge;
+        }
+
+        &:hover {
+          background: none;
+          opacity: 1;
+          // transform: scale(4) rotate(-15deg) translate(-8%, -16%);
+        }
+      }
+
+      > .callout-title {
+        margin-inline-start: calc($padding-base / 1.2 + 4px);
+        z-index: 1;
+      }
     }
   }
 }

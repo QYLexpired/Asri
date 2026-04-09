@@ -11,13 +11,13 @@
 // 确保该变量被即时计算，子元素可以直接获取数值，而不是惰性求值
 @property --protyle-i {
   syntax: "<integer>";
-  inherits: true;
+  inherits: false;
   initial-value: 0;
 }
 
 @property --protyle-c {
   syntax: "<integer>";
-  inherits: true;
+  inherits: false;
   initial-value: 0;
 }
 

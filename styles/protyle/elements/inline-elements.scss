@@ -194,18 +194,20 @@
       Menlo,
       Courier,
       var(--b3-font-family);
+    font-weight: inherit;
     color: inherit;
-    padding: 0.15em 0.5em;
+    padding: calc(0.5em / 0.8 - 0.5em) 0.5em;
     border-radius: 1em;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
-    vertical-align: baseline;
+    vertical-align: text-bottom;
     box-shadow:
       inset 0 -1px 0 #fff6,
       inset 0 1px 0 #fffa;
-    background-image: linear-gradient(to bottom, #0000, var(--kbd-shadow-line-color));
+    background-image: linear-gradient(to bottom, #fff4, var(--kbd-shadow-line-color));
     // background-repeat: no-repeat;
     background-clip: padding-box;
+    background-size: contain;
     margin: auto 0.25em;
     text-shadow: 0 1px #fffa;
 
@@ -216,7 +218,7 @@
         inset 0 0 0 1px var(--kbd-shadow-line-color);
       background-image: linear-gradient(to bottom, var(--kbd-shadow-line-color), #0003);
       border: none;
-      text-shadow: 0 -1px #000a;
+      text-shadow: 0 -1px #000b;
     }
 
     @supports (color: color-mix(in srgb, currentColor, #000)) {
@@ -269,6 +271,9 @@
     -webkit-box-decoration-break: clone;
     border-radius: 0.4em;
     color: inherit;
+    padding: calc(1em / 0.85 - 1em) 0.3em;
+    margin: 0 0.1em;
+    vertical-align: 0.075em;
 
     @supports (color: color-mix(in srgb, currentColor, #000)) {
       background-color: color-mix(in srgb, currentColor 12%, #0000);
