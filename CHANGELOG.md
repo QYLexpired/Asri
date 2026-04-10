@@ -1,3 +1,21 @@
+### v3.6.13
+
+- 优化行内代码、按键对齐；样式微调
+- 调整行内代码、按键样式为跟随文本色调
+- 调整文本选中背景色为跟随文本色调
+- 调整提示块样式
+- 修复选中文本重复着色的问题
+
+<br />
+
+- Optimized the alignment of inline code and keys; made minor style adjustments
+- Adjusted the style of inline code and keys to follow the text color hue
+- Modified the selected text background color to follow the text color hue
+- Updated the styling of callout blocks
+- Fixed the issue of duplicate coloring in selected text
+
+---
+
 ### v3.6.12
 
 - [修复PDF阅读器搜索工具按钮样式问题](https://github.com/mustakshif/Asri/issues/238)
