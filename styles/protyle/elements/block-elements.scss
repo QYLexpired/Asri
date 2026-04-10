@@ -169,9 +169,10 @@
 }
 
 @mixin code-block {
-  .code-block,
-  code.hljs {
+  .code-block {
     // background-color: var(--b3-theme-surface-light);
+    // box-shadow: 0 0 0 0.5px inset var(--b3-border-color-trans), 0 12px 20px -15px var(--b3-border-color-trans) inset, 0 1px 0 0 #fff4;
+
     .asri-mode-light & {
       background-color: var(--b3-theme-surface-light);
     }
@@ -551,6 +552,10 @@
       }
     }
 
+    @supports (color: color-mix(in srgb, currentColor, #0000)) {
+      --callout-border-color: color-mix(in srgb, currentColor 10%, transparent) !important;
+    }
+
     + .callout,
     + .bq,
     + blockquote {
@@ -565,11 +570,20 @@
         transform: scale(4.2) rotate(-15deg) translate(-2%, -12%);
         opacity: 0.8;
         transition: opacity 0.2s 0.125s;
-        filter: grayscale(1) contrast(0.7) brightness(0.8);
+        filter: grayscale(1) contrast(0.6) brightness(0.6);
         mix-blend-mode: color-burn;
         // pointer-events: none;
 
+        // export mode doesn't seem to support mix-blend-mode well
+        #preview &,
+        .b3-dialog--open[data-key="dialog-exportimage"] & {
+          opacity: 0.2;
+          filter: none;
+          mix-blend-mode: unset;
+        }
+
         @include darkmode-counterpart {
+          filter: grayscale(1) contrast(0.6) brightness(0.8);
           mix-blend-mode: color-dodge;
         }
 

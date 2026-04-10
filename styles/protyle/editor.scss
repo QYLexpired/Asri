@@ -188,6 +188,8 @@
     border-radius: 10px;
     @include superellipse(10px);
   }
+
+  @include callout;
 }
 
 .b3-typography,
@@ -206,7 +208,6 @@
   @include hljs;
   @include code-block;
   @include table;
-  @include callout;
 }
 
 .layout__center .protyle {
