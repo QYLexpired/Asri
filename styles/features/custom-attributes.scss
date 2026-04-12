@@ -9,7 +9,8 @@
 }
 
 // #region 图片
-.body-asri--mobile .protyle-wysiwyg, .layout__center .protyle-wysiwyg {
+.body-asri--mobile .protyle-wysiwyg,
+.layout__center .protyle-wysiwyg {
   &[custom-afwd="all"] > .p:not([custom-afwd="off"]),
   &[custom-afwd~="p"] > .p:not([custom-afwd="off"]),
   > .p[custom-afwd="on"] {
@@ -398,6 +399,7 @@
  * text direction
  */
 [custom-tdir="rtl"] {
+  --lnf: -1;
   direction: rtl;
 
   .protyle-attr {
@@ -418,7 +420,9 @@
     direction: rtl;
   }
 
-  .av {
+  .av,
+  .protyle-icons,
+  .protyle-action {
     direction: ltr;
   }
 

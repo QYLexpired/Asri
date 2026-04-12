@@ -53,9 +53,6 @@
     // outline: 1px solid var(--b3-border-color-trans);
     // outline-offset: -1px; //https://github.com/mustakshif/Asri/issues/208
 
-    &::before {
-      display: none;
-    }
     &:not([custom-callout]):not([custom-b]):not([custom-cssclasses]) {
       @include superellipse($corner-radius);
 
@@ -69,6 +66,7 @@
         position: absolute;
         left: 0;
         top: 0;
+        right: unset;
         border-radius: 0 0 calc($corner-radius / $superellipse-k) 0;
         background-color: var(--b3-border-color-trans);
         // background: linear-gradient(-45deg, var(--b3-border-color-trans) 50%, transparent 50%);
@@ -492,38 +490,6 @@
     background-color: var(--callout-background-color, var(--b3-theme-surface));
     box-shadow: 0 0 0 0.5px inset var(--callout-border-color, var(--b3-border-color-trans));
 
-    // #region overflow hidden support
-    overflow: hidden;
-
-    .protyle-attr {
-      top: 4px;
-      inset-inline-end: 24px;
-
-      > div {
-        color: inherit;
-      }
-
-      > .protyle-attr--refcount {
-        top: unset;
-        right: unset;
-        inset-inline-end: -20px;
-      }
-    }
-
-    &.dragover__left::after {
-      left: 0;
-    }
-    &.dragover__right::after {
-      right: 0;
-    }
-    &.dragover__top::after {
-      top: 0;
-    }
-    &.dragover__bottom::after {
-      bottom: 0;
-    }
-    // #endregion overflow hidden support
-
     &-icon {
       font-size: 120%;
     }
@@ -567,20 +533,12 @@
         position: absolute;
         inset-inline-end: 0;
         inset-block-end: 0;
-        transform: scale(4.2) rotate(-15deg) translate(-2%, -12%);
+        transform: scale(4.2) rotate(negateForRTL(-15deg, local)) translate(-2%, -12%);
         opacity: 0.8;
         transition: opacity 0.2s 0.125s;
-        filter: grayscale(1) contrast(0.6) brightness(0.6);
+        filter: grayscale(1) contrast(0.6) brightness(0.7);
         mix-blend-mode: color-burn;
         // pointer-events: none;
-
-        // export mode doesn't seem to support mix-blend-mode well
-        #preview &,
-        .b3-dialog--open[data-key="dialog-exportimage"] & {
-          opacity: 0.2;
-          filter: none;
-          mix-blend-mode: unset;
-        }
 
         @include darkmode-counterpart {
           filter: grayscale(1) contrast(0.6) brightness(0.8);
@@ -590,7 +548,7 @@
         &:hover {
           background: none;
           opacity: 1;
-          // transform: scale(4) rotate(-15deg) translate(-8%, -16%);
+          // transform: scale(4) rotate(negateForRTL(-15deg, "local")) translate(-8%, -16%);
         }
       }
 

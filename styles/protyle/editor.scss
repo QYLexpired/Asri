@@ -190,6 +190,41 @@
   }
 
   @include callout;
+
+  .callout,
+  .bq {
+    // #region overflow hidden support
+    overflow: hidden;
+
+    .protyle-attr {
+      top: 4px;
+      inset-inline-end: 24px;
+
+      > div {
+        color: inherit;
+      }
+
+      > .protyle-attr--refcount {
+        top: unset;
+        right: unset;
+        inset-inline-end: -20px;
+      }
+    }
+
+    &.dragover__left::after {
+      left: 0;
+    }
+    &.dragover__right::after {
+      right: 0;
+    }
+    &.dragover__top::after {
+      top: 0;
+    }
+    &.dragover__bottom::after {
+      bottom: 0;
+    }
+    // #endregion overflow hidden support
+  }
 }
 
 .b3-typography,
@@ -373,4 +408,12 @@
     border-radius: 4px;
     border-color: transparent;
   }
+}
+
+// 文档标题始终按Unicode定义的方向自动排版
+.protyle-title__input,
+.av__title,
+input,
+textarea {
+  unicode-bidi: plaintext;
 }

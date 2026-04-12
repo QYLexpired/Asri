@@ -171,4 +171,9 @@
 
 .export-img {
   @include superellipse(16px);
+
+  > .protyle-wysiwyg {
+    // this makes callout mix-blend-mode work
+    background-color: var(--b3-theme-background);
+  }
 }

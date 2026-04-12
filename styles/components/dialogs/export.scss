@@ -61,3 +61,8 @@ body[style="-webkit-print-color-adjust: exact;"] {
 //         @include button-action('primary');
 //     }
 // }
+
+#preview {
+  // this makes callout mix-blend-mode work
+  background-color: var(--b3-theme-background);
+}

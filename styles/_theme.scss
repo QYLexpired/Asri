@@ -77,9 +77,9 @@ body {
 }
 
 :root {
-  @supports (color: color-mix(in srgb, currentColor, #000)) {
+  @supports (color: color-mix(in srgb, currentColor, #0000)) {
     ::selection {
-      background-color: color-mix(in srgb, currentColor 25%, #00000000);
+      background-color: color-mix(in srgb, currentColor 25%, #0000);
     }
   }
 }
