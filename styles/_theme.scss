@@ -76,10 +76,11 @@ body {
   --toolbar-height: 48px;
 }
 
-:root {
-  @supports (color: color-mix(in srgb, currentColor, #0000)) {
-    ::selection {
-      background-color: color-mix(in srgb, currentColor 25%, #0000);
-    }
-  }
-}
+// 选中背景颜色问题 https://github.com/mustakshif/Asri/issues/242 https://github.com/mustakshif/Asri/issues/241
+// :root {
+//   @supports (color: color-mix(in srgb, currentColor, #0000)) {
+//     ::selection {
+//       background-color: color-mix(in srgb, currentColor 25%, #0000);
+//     }
+//   }
+// }

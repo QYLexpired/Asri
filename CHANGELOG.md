@@ -1,3 +1,23 @@
+### v3.6.14
+
+- 优化提示块、引述块样式在RTL排版中的展示
+- 文档标题、数据库标题、输入框等改为按Unicode双向算法自动排版
+- 调整文档标题样式
+- 统一编辑器页面和导出页面下的提示块样式
+- 修复块工具条在RTL排版下显示异常的问题
+- 回滚「调整文本选中背景色为跟随文本色调」[[#241](https://github.com/mustakshif/Asri/issues/241)] [[#242](https://github.com/mustakshif/Asri/issues/242)]
+
+<br />
+
+- Optimized the display of callout blocks and quote blocks in RTL layouts
+- Changed document titles, database titles, input fields, etc., to automatically follow the Unicode Bidirectional Algorithm for layout
+- Adjusted the styling of document titles
+- Unified the callout block styles between the editor page and the export page
+- Fixed an issue where the block toolbar displayed incorrectly in RTL layouts
+- Reverted "Modified the selected text background color to follow the text color hue" [[#241](https://github.com/mustakshif/Asri/issues/241)] [[#242](https://github.com/mustakshif/Asri/issues/242)]
+
+---
+
 ### v3.6.13
 
 - 优化行内代码、按键对齐；样式微调
