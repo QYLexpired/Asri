@@ -10,6 +10,38 @@ $chip-border-radius: 5px;
   --b3-parent-background: color-mix(in srgb, var(--b3-theme-surface), var(--b3-theme-background));
 }
 
+@mixin flex-gallery-card {
+  // 字段名称
+  .av__gallery-field--name {
+    display: flex;
+    align-items: baseline;
+
+    .av__gallery-name {
+      flex-basis: calc(33.3%);
+      // flex-basis: fit-content;
+      flex-shrink: 0;
+      max-width: 10em;
+
+      > span,
+      > svg {
+        display: none;
+      }
+    }
+
+    > .av__cell {
+      flex-shrink: 1;
+      flex-basis: 100%;
+      // text-align: end;
+    }
+
+    &[data-empty="true"] {
+      > .av__cell {
+        align-self: center;
+      }
+    }
+  }
+}
+
 .av {
   // &__container[style="--av-background:var(--b3-theme-surface)"] {
   //     --av-background: color-mix(in srgb, var(--b3-theme-surface), var(--b3-theme-background)) !important;
@@ -548,7 +580,7 @@ $chip-border-radius: 5px;
       }
 
       &::before {
-        top: calc(4/7 * 1em);
+        top: calc(4 / 7 * 1em);
       }
     }
 
@@ -581,23 +613,23 @@ $chip-border-radius: 5px;
     // 小
     &.av__gallery--small {
       gap: 16px;
-      --gibr: 12px; // gallery item border radius
-      --gtis: 1.5em; // gallery title icon size
-      --gtfs: 1em; // gallery item font size
+      --gallery-item-border-radius: 12px; // gallery item border radius
+      --gallery-title-icon-size: 1.5em; // gallery title icon size
+      --gallery-item-font-size: 1em; // gallery item font size
     }
 
     // 中
     gap: 20px;
-    --gibr: 16px;
-    --gtis: 2em;
-    --gtfs: 1.33em;
+    --gallery-item-border-radius: 16px;
+    --gallery-title-icon-size: 2em;
+    --gallery-item-font-size: 1.33em;
 
     // 大
     &.av__gallery--big {
       gap: 24px;
-      --gibr: 20px;
-      --gtis: 2.75em;
-      --gtfs: 1.77em;
+      --gallery-item-border-radius: 20px;
+      --gallery-title-icon-size: 2.75em;
+      --gallery-item-font-size: 1.77em;
     }
 
     .av__gallery-actions .protyle-icon {
@@ -605,8 +637,8 @@ $chip-border-radius: 5px;
     }
 
     &-item {
-      border-radius: var(--gibr);
-      @include superellipse(var(--gibr));
+      border-radius: var(--gallery-item-border-radius);
+      @include superellipse(var(--gallery-item-border-radius));
       box-shadow: 0 0 0 1px var(--b3-border-color-trans);
       // box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.06), 0px 1px 2px -1px rgba(0, 0, 0, 0.06), 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
       // @include darkmode-counterpart {
@@ -627,15 +659,15 @@ $chip-border-radius: 5px;
       &--select {
         &::before {
           z-index: 2;
-          border-radius: var(--gibr);
+          border-radius: var(--gallery-item-border-radius);
         }
       }
     }
 
     &-cover {
       border-bottom: none;
-      border-radius: var(--gibr) var(--gibr) 0 0;
-      @include superellipse(var(--gibr) var(--gibr) 0 0);
+      border-radius: var(--gallery-item-border-radius) var(--gallery-item-border-radius) 0 0;
+      @include superellipse(var(--gallery-item-border-radius) var(--gallery-item-border-radius) 0 0);
       background-color: var(--b3-theme-surface);
       // background-color: #0000;
       // background: linear-gradient(to bottom, var(--b3-theme-surface), #0000);
@@ -647,9 +679,9 @@ $chip-border-radius: 5px;
       }
 
       .av__gallery-content {
-        margin: calc(var(--gibr) - 4px) var(--gibr) 0;
+        margin: calc(var(--gallery-item-border-radius) - 4px) var(--gallery-item-border-radius) 0;
         // mask-image: linear-gradient(to bottom, #000 0%, #0000 100cqh);
-        // width: calc(100% / 0.85 - var(--gibr) * 2);
+        // width: calc(100% / 0.85 - var(--gallery-item-border-radius) * 2);
         width: auto;
         transform: none;
         font-size: 85%;
@@ -674,9 +706,9 @@ $chip-border-radius: 5px;
     }
 
     &-fields {
-      padding: var(--gibr);
-      border-radius: 0 0 var(--gibr) var(--gibr);
-      @include superellipse(0 0 var(--gibr) var(--gibr));
+      padding: var(--gallery-item-border-radius);
+      border-radius: 0 0 var(--gallery-item-border-radius) var(--gallery-item-border-radius);
+      @include superellipse(0 0 var(--gallery-item-border-radius) var(--gallery-item-border-radius));
 
       @include darkmode-counterpart {
         // background-color: var(--b3-theme-surface);
@@ -690,12 +722,18 @@ $chip-border-radius: 5px;
       //   }
       // }
 
+      .av__cell {
+        min-height: 1.625em;
+        box-sizing: content-box;
+        padding: 0;
+      }
+
       &--edit .av__cell {
-        padding: 5px 4px !important;
+        padding: 4px !important;
       }
 
       > .av__gallery-field > .av__cell {
-        padding: 5px 4px;
+        padding: 4px;
 
         @include database-assets-style("chip");
 
@@ -746,16 +784,16 @@ $chip-border-radius: 5px;
     &-add {
       @include button-action("normal") {
         box-shadow: none;
-        border-radius: var(--gibr);
-        @include superellipse(var(--gibr));
+        border-radius: var(--gallery-item-border-radius);
+        @include superellipse(var(--gallery-item-border-radius));
       }
     }
 
     // 标题图标上移、标题字体大小、标题内边距
     &-fields > .av__gallery-field:first-child {
       > .av__cell[data-dtype="block"] {
-        padding-top: calc(var(--gtfs) / 13.6 * 5);
-        // padding-bottom: calc(var(--gtfs) / 13.6 * 5);
+        padding-top: calc(var(--gallery-item-font-size) / 13.6 * 5);
+        // padding-bottom: calc(var(--gallery-item-font-size) / 13.6 * 5);
         padding-bottom: 0;
 
         &:nth-child(2) {
@@ -763,24 +801,24 @@ $chip-border-radius: 5px;
           // width: 100%;
 
           > .b3-menu__avemoji {
-            font-size: var(--gtfs);
+            font-size: var(--gallery-item-font-size);
             // position: absolute;
             // top: -1.5em;
             // z-index: 2;
           }
 
           > .av__celltext {
-            font-size: var(--gtfs);
+            font-size: var(--gallery-item-font-size);
           }
 
           &[data-wrap="false"] {
-            > .av__celltext {
-              display: -webkit-inline-box;
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 1;
-              text-overflow: ellipsis;
-              width: calc(100% - var(--gtfs) - 4px);
-            }
+            // > .av__celltext {
+            //   display: -webkit-inline-box;
+            //   -webkit-box-orient: vertical;
+            //   -webkit-line-clamp: 1;
+            //   text-overflow: ellipsis;
+            //   width: calc(100% - var(--gtfs) - 4px);
+            // }
 
             .b3-menu__avemoji.fn__none + .av__celltext {
               width: 100%;
@@ -789,9 +827,30 @@ $chip-border-radius: 5px;
         }
       }
     }
+    &-fields > .av__gallery-field {
+      > .av__cell[data-dtype="block"] {
+        &[data-wrap="false"] {
+          > .av__celltext {
+            display: -webkit-inline-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            text-overflow: ellipsis;
+            width: calc(100% - var(--gallery-item-font-size) - 4px);
+          }
+        }
+      }
+    }
 
     &-actions {
       top: 8px;
+    }
+
+    &:not(.av__gallery--small) > .av__gallery-item {
+      @include flex-gallery-card;
+    }
+
+    .av__gallery-name {
+      font-weight: 500;
     }
   }
 
@@ -811,14 +870,14 @@ $chip-border-radius: 5px;
   }
 
   // kanban view
-  .av__kanban {
+  &__kanban {
     .av__gallery--small {
-      --gibr: 12px;
+      --gallery-item-border-radius: 12px;
     }
     &--bg {
       .av__gallery--small,
       .av__kanban-group {
-        --gibr: 8px;
+        --gallery-item-border-radius: 8px;
       }
       .av__gallery-item,
       .av__gallery-add {
@@ -842,7 +901,7 @@ $chip-border-radius: 5px;
 
       .av__kanban-group {
         &::before {
-          @include superellipse(calc(var(--gibr) + 8px), true);
+          @include superellipse(calc(var(--gallery-item-border-radius) + 8px), true);
         }
 
         .av__group-title {
@@ -855,6 +914,10 @@ $chip-border-radius: 5px;
           }
         }
       }
+    }
+
+    &-group:not(.av__kanban-group--small) > .av__body {
+      @include flex-gallery-card;
     }
   }
   .av__gallery-item::before {
