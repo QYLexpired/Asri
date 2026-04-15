@@ -11,6 +11,11 @@ $chip-border-radius: 5px;
 }
 
 @mixin flex-gallery-card {
+  .av__gallery-fields:not(.av__gallery-fields--edit) {
+    >[data-empty=true] {
+      display: none;
+    }
+  }
   // 字段名称
   .av__gallery-field--name {
     display: flex;
@@ -790,7 +795,7 @@ $chip-border-radius: 5px;
     }
 
     // 标题图标上移、标题字体大小、标题内边距
-    &-fields > .av__gallery-field:first-child {
+    &-fields > .av__gallery-field:not(.av__gallery-field--name):first-child {
       > .av__cell[data-dtype="block"] {
         padding-top: calc(var(--gallery-item-font-size) / 13.6 * 5);
         // padding-bottom: calc(var(--gallery-item-font-size) / 13.6 * 5);
@@ -828,6 +833,13 @@ $chip-border-radius: 5px;
       }
     }
     &-fields > .av__gallery-field {
+      // &.av__gallery-field--name > .av__cell[data-dtype="block"]:nth-child(2) {
+      //   > .b3-menu__avemoji,
+      //   > .av__celltext {
+      //     font-size: calc(var(--gallery-item-font-size) * 0.75);
+      //   }
+      // }
+
       > .av__cell[data-dtype="block"] {
         &[data-wrap="false"] {
           > .av__celltext {
