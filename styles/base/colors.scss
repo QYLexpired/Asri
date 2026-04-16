@@ -292,3 +292,7 @@ $theme-dark: (
 @function toRGB($color, $method: local-minde) {
   @return color.to-gamut($color, $method: $method);
 }
+
+@function currentColorVariant($percentage) {
+  @return color-mix(in srgb, currentColor $percentage, transparent);
+}

@@ -92,6 +92,12 @@
   background-color: var(--b3-list-hover);
   padding: 2px;
   height: auto;
+  box-shadow: 0 0 0 0.5px var(--b3-border-color-trans);
+  // box-shadow: 0 0 0 0.5px currentColorVariant(20%), 0 2px 8px -6px currentColorVariant(40%) inset, 0 1.5px 0 0 #fff8;
+
+  // @include darkmode-counterpart {
+  //   box-shadow: 0 4px 8px -6px #0008 inset, 0 0 0 0.5px #0006 inset, 0 0.5px 0 0 currentColorVariant(20%);
+  // }
 
   @supports (corner-shape: superellipse(1.5)) {
     corner-shape: superellipse($superellipse-k);
