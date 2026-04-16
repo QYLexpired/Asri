@@ -8,6 +8,7 @@
   --asri-status-transform-x: 0px;
   --asri-status-transform-y: 0px;
   --status-position-transform: translate(var(--asri-status-transform-x), var(--asri-status-transform-y));
+  position: absolute;
   bottom: calc(anchor(--anchor-layout-center bottom) + 8px);
   right: calc(anchor(--anchor-layout-center right) + 8px);
 
@@ -154,7 +155,9 @@
       width: 4px;
       height: 4px;
       background-color: var(--dots-clr);
-      box-shadow: 8px 0 0 0 var(--dots-clr), 16px 0 0 0 var(--dots-clr);
+      box-shadow:
+        8px 0 0 0 var(--dots-clr),
+        16px 0 0 0 var(--dots-clr);
       border-radius: 50%;
       position: absolute;
       top: 6px;
@@ -162,7 +165,9 @@
       transform: translateX(-10px);
       transform-origin: top center;
       // transition: var(--icons2dots-dur) var(--icons2dots-timing-func) var(--icons2dots-delay);
-      animation: statusDotsFadeIn 0.4s var(--asri-ease-out-3), statusDotsTransform 0.5s var(--asri-ease-spring-3);
+      animation:
+        statusDotsFadeIn 0.4s var(--asri-ease-out-3),
+        statusDotsTransform 0.5s var(--asri-ease-spring-3);
       opacity: 0.5;
     }
   }
@@ -170,7 +175,9 @@
   animation: statusExpand 0.4s var(--asri-ease-spring-2);
 
   > div {
-    animation: statusItemFadeIn 0.3s var(--asri-ease-out-3), statusItemTransform 0.5s var(--asri-ease-spring-3);
+    animation:
+      statusItemFadeIn 0.3s var(--asri-ease-out-3),
+      statusItemTransform 0.5s var(--asri-ease-spring-3);
   }
 
   @keyframes statusShrink {
@@ -383,7 +390,9 @@
       width: 4px;
       height: 4px;
       background-color: var(--dots-clr);
-      box-shadow: 8px 0 0 0 var(--dots-clr), 16px 0 0 0 var(--dots-clr);
+      box-shadow:
+        8px 0 0 0 var(--dots-clr),
+        16px 0 0 0 var(--dots-clr);
       border-radius: 50%;
       position: absolute;
       top: 6px;
@@ -391,7 +400,9 @@
       transform: translateX(-10px);
       transform-origin: top center;
       // transition: var(--icons2dots-dur) var(--icons2dots-timing-func) var(--icons2dots-delay);
-      animation: statusDotsFadeIn 0.4s var(--asri-ease-out-3), statusDotsTransform 0.5s var(--asri-ease-spring-3);
+      animation:
+        statusDotsFadeIn 0.4s var(--asri-ease-out-3),
+        statusDotsTransform 0.5s var(--asri-ease-spring-3);
       opacity: 0.5;
     }
   }
@@ -399,7 +410,9 @@
   animation: statusExpand 0.4s var(--asri-ease-spring-2);
 
   > div {
-    animation: statusItemFadeIn 0.3s var(--asri-ease-out-3), statusItemTransform 0.5s var(--asri-ease-spring-3);
+    animation:
+      statusItemFadeIn 0.3s var(--asri-ease-out-3),
+      statusItemTransform 0.5s var(--asri-ease-spring-3);
   }
 
   @keyframes statusShrink {
@@ -465,8 +478,10 @@
 // #endregion
 
 .status {
-  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.2s;
-  position: absolute; // "fixed" won't work in safari
+  transition:
+    transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    background-color 0.2s;
+  // position: absolute; // "fixed" won't work in safari
 }
 
 // .has-dockb~.status {
@@ -476,7 +491,16 @@
 body:not(.body-asri--mobile) #dockBottom.fn__none:not(.has-layout-dockb-float) ~ .status,
 body.body--window .status {
   // @include floating-status();
-  @include floating-status-anchor();
+  @supports (top: anchor(bottom)) {
+    @include floating-status-anchor();
+  }
+
+  @supports not (top: anchor(bottom)) {
+    // box-shadow: 0 -1px 0 0 var(--b3-border-color);
+    background-color: var(--b3-theme-background) !important;
+    backdrop-filter: none !important;
+    border-width: 1px;
+  }
 }
 
 #dockBottom:not(.fn__none) ~ .status,
